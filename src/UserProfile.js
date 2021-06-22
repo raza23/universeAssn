@@ -10,7 +10,7 @@ export default function UserProfile(props) {
   useEffect(() => {
     //* makes the fetch
     getUserPosts();
-  }, []);
+  });
 
   const getUserPosts = () => {
     fetch(`https://jsonplaceholder.typicode.com/users/${props.user.id}/posts`)
@@ -56,7 +56,7 @@ export default function UserProfile(props) {
               userID={post.userId}
               title={post.title}
               body={post.body}
-              userInfo={props.users}
+              //   userInfo={props.users}
               // eventdate={date}
             />
           </Link>
@@ -68,5 +68,12 @@ export default function UserProfile(props) {
   console.log(userPosts);
 
   console.log(props);
-  return <div>{allPosts}</div>;
+  return (
+    <div>
+      <div className="UserProfile">
+        <h1>{props.user.name}'s Posts</h1>
+        {allPosts}
+      </div>
+    </div>
+  );
 }

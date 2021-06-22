@@ -33,8 +33,6 @@ function PostLine(props) {
   console.log("postline", props);
 
   const allPosts = props.posts.map(post => {
-    // console.log(post);
-
     return (
       <Column>
         <OnePost>

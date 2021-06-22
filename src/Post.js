@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
 import styled from "styled-components";
 
 export default function Post(props) {
+  const [UserInfo, setUserInfo] = useState([]);
+
+  useEffect(() => {
+    //* makes the fetch
+    getUserInfo();
+  }, []);
+
+  const getUserInfo = () => {
+    fetch(`https://jsonplaceholder.typicode.com/users/${props.userID}/`)
+      .then(res => res.json())
+      .then(data => setUserInfo(data));
+  };
+
+  console.log(UserInfo);
+
   const TitleText = styled.p`
     position: absolute;
     height: 4px;
@@ -69,13 +85,14 @@ export default function Post(props) {
     color: #ffffff;
   `;
 
-  //   console.log(props.userInfo);
+  console.log(props.userID);
+
   return (
     <div>
       {/* <h4>Title:</h4> */}
       <TitleText>Title:{props.title}</TitleText>
       <BodyText>Body: {props.body}</BodyText>
-      <UserText>{props.userID}</UserText>
+      <UserText>{UserInfo.name}</UserText>
     </div>
   );
 }

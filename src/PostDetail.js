@@ -3,13 +3,11 @@ import { Link } from "react-router-dom";
 
 function PostDetail(props) {
   const [postDetail, setPostDetail] = useState([]);
-  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     //* makes the fetch
     getPostDetail();
-    getUsers();
-  }, []);
+  });
 
   const getPostDetail = () => {
     fetch(
@@ -17,12 +15,6 @@ function PostDetail(props) {
     )
       .then(res => res.json())
       .then(data => setPostDetail(data));
-  };
-
-  const getUsers = () => {
-    fetch(`https://jsonplaceholder.typicode.com/users`)
-      .then(res => res.json())
-      .then(data => setUsers(data));
   };
 
   console.log("props", props);

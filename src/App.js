@@ -14,6 +14,7 @@ import NavBar from "./NavBar";
 import "./App.css";
 
 const UNIVERSE_URL = "https://jsonplaceholder.typicode.com/posts";
+const USERS_URL = "https://jsonplaceholder.typicode.com/users";
 
 function App() {
   const [userPosts, setUserPosts] = useState([]);
@@ -32,7 +33,7 @@ function App() {
   };
 
   const getUsers = () => {
-    fetch(`https://jsonplaceholder.typicode.com/users`)
+    fetch(USERS_URL)
       .then(res => res.json())
       .then(data => setUsers(data));
   };
