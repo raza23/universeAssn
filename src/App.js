@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import PostLine from "./PostLine";
+
+import "./App.css";
+
+const UNIVERSE_URL = "https://jsonplaceholder.typicode.com/posts";
 
 function App() {
+  const [userPosts, setUserPosts] = useState([]);
+
+  useEffect(() => {
+    //* makes the fetch
+    getUserPosts();
+  }, []);
+
+  const getUserPosts = () => {
+    fetch(UNIVERSE_URL)
+      .then(res => res.json())
+      .then(data => setUserPosts(data));
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <PostLine posts={userPosts} />
     </div>
   );
 }
