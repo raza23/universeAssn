@@ -4,14 +4,27 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Post from "./Post";
 
-function PostLine(props) {
+export default function UserProfile(props) {
+  const [userPosts, setUserPosts] = useState([]);
+
+  useEffect(() => {
+    //* makes the fetch
+    getUserPosts();
+  }, []);
+
+  const getUserPosts = () => {
+    fetch(`https://jsonplaceholder.typicode.com/users/${props.user.id}/posts`)
+      .then(res => res.json())
+      .then(data => setUserPosts(data));
+  };
+
   const OnePost = styled.div`
     position: relative;
     width: 300px;
     height: 160px;
     display: inline-block;
 
-    padding: 20px 20px 10px 10px;
+    padding: 10px 20px 10px 10px;
     border: 1px solid white;
 
     background: #001c34;
@@ -30,9 +43,8 @@ function PostLine(props) {
     left: 00px;
     top: 1px;
   `;
-  console.log("postline", props);
 
-  const allPosts = props.posts.map(post => {
+  const allPosts = userPosts.map(post => {
     // console.log(post);
 
     return (
@@ -53,7 +65,8 @@ function PostLine(props) {
     );
   });
 
+  console.log(userPosts);
+
+  console.log(props);
   return <div>{allPosts}</div>;
 }
-
-export default PostLine;

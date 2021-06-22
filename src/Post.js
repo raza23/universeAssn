@@ -2,12 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 export default function Post(props) {
-  const HeadlineText = styled.p`
+  const TitleText = styled.p`
     position: absolute;
     height: 4px;
     left: 5%;
+    padding: 0px 5px;
+
     // right: 18%;
-    top: 0px;
+    top: 10px;
 
     font-family: "Poppins", sans-serif;
 
@@ -19,17 +21,17 @@ export default function Post(props) {
 
     // text-align: center;
     mix-blend-mode: normal;
-    opacity: 0.8;
+    opacity: 1.8;
 
     color: #ffffff;
   `;
 
-  const SubHeadlineText = styled.p`
+  const BodyText = styled.p`
     position: absolute;
     height: 64px;
     // left: 5%;
     // right: 18%;
-    top: 30px;
+    top: 50px;
     padding: 10px;
 
     font-family: "Poppins", sans-serif;
@@ -45,12 +47,12 @@ export default function Post(props) {
     color: #ffffff;
   `;
 
-  const TimeText = styled.p`
+  const UserText = styled.p`
     position: absolute;
     height: 0px;
     left: 5%;
     // right: 18%;
-    top: 100px;
+    top: 130px;
 
     font-family: "Poppins", sans-serif;
 
@@ -67,11 +69,13 @@ export default function Post(props) {
     color: #ffffff;
   `;
 
+  //   console.log(props.userInfo);
   return (
     <div>
-      <HeadlineText>{props.title}</HeadlineText>
-      <SubHeadlineText>{props.body}</SubHeadlineText>
-      <TimeText>{props.user}</TimeText>
+      {/* <h4>Title:</h4> */}
+      <TitleText>Title:{props.title}</TitleText>
+      <BodyText>Body: {props.body}</BodyText>
+      <UserText>{props.userID}</UserText>
     </div>
   );
 }
